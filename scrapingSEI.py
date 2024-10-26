@@ -41,7 +41,7 @@ try:
 
     # Data de hoje no formato que aparece na tabela (ajuste se necessário)
     data_hoje = datetime.now().strftime("%d/%m/%Y")
-    #data_hoje = datetime(2024, 10, 22).strftime("%d/%m/%Y")
+    #data_hoje = datetime(2024, 10, 25).strftime("%d/%m/%Y")
 
     # Encontra a tabela com id 'tblDocumentos'
     tabela = driver.find_element(By.ID, "tblDocumentos")
@@ -90,36 +90,49 @@ try:
 
     if not df.empty:
         df_nomeacao    = df[df.iloc[:, 0].str.startswith(busca_nomeacao1)]
-        df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(busca_nomeacao1, '', regex=False)
-        df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(busca_nomeacao2, '|', regex=False)
-        df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(", para exercer o cargo de ", '|', regex=False)
-        df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(", referência QPL-", '|', regex=False)
+        if not df_nomeacao.empty:
+            df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(busca_nomeacao1, '', regex=False)
+            df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(busca_nomeacao2, '|', regex=False)
+            df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(", para exercer o cargo de ", '|', regex=False)
+            df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(", referência QPL-", '|', regex=False)
 
-        df_nomeacao         = df_nomeacao.iloc[:, 0].str.split('|', expand=True)
-        df_nomeacao         = df_nomeacao.drop([1, 3], axis=1, errors='ignore')
-        df_nomeacao.columns = ['Nome Completo', 'Cargo / Especialidade']
+            df_nomeacao         = df_nomeacao.iloc[:, 0].str.split('|', expand=True)
+            df_nomeacao         = df_nomeacao.drop([1, 3], axis=1, errors='ignore')
+            df_nomeacao.columns = ['Nome Completo', 'Cargo / Especialidade']
+            df_nomeacao['Evento'] = 'Nomeação'
 
         df_sem_efeito = df[df[0].str.startswith(busca_sem_efeito)]
-        df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", que nomeou ", '|', regex=False)
-        df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", para exercer o cargo de ", '|', regex=False)
-        df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", referência QPL-", '|', regex=False)
+        if not df_sem_efeito.empty:
+            df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", que nomeou ", '|', regex=False)
+            df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", para exercer o cargo de ", '|', regex=False)
+            df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", referência QPL-", '|', regex=False)
 
-        df_sem_efeito         = df_sem_efeito.iloc[:, 0].str.split('|', expand=True)
-        df_sem_efeito         = df_sem_efeito.drop([0, 3], axis=1, errors='ignore')
-        df_sem_efeito.columns = ['Nome Completo', 'Cargo / Especialidade']
+            df_sem_efeito         = df_sem_efeito.iloc[:, 0].str.split('|', expand=True)
+            df_sem_efeito         = df_sem_efeito.drop([0, 3], axis=1, errors='ignore')
+            df_sem_efeito.columns = ['Nome Completo', 'Cargo / Especialidade']
+            df_sem_efeito['Evento'] = 'Nomeação Sem Efeito'
 
-        df_nomeacao  ['Evento'] = 'Nomeação'
-        df_sem_efeito['Evento'] = 'Nomeação Sem Efeito'
-
-        df = pd.concat([df_nomeacao, df_sem_efeito], ignore_index=True)
-        df = df[['Evento', 'Nome Completo', 'Cargo / Especialidade']]
-
-    #print(df.to_string())
-
-    html_table = df.to_html(index=False)
-
-    with open("index.html", "w") as file:
-        file.write(html_table)
+        if not df_nomeacao.empty and not df_sem_efeito.empty:
+            df = pd.concat([df_nomeacao, df_sem_efeito], ignore_index=True)
+            df['Data SEI'] = data_hoje
+            df = df[['Data SEI', 'Evento', 'Nome Completo', 'Cargo / Especialidade']]
+            html_table = df.to_html(index=False)
+            with open("index.html", "w") as file:
+                file.write(html_table)
+        elif not df_nomeacao.empty:
+            df = df_nomeacao
+            df['Data SEI'] = data_hoje
+            df = df[['Data SEI', 'Evento', 'Nome Completo', 'Cargo / Especialidade']]
+            html_table = df.to_html(index=False)
+            with open("index.html", "w") as file:
+                file.write(html_table)
+        elif not df_sem_efeito.empty:
+            df = df_sem_efeito
+            df['Data SEI'] = data_hoje
+            df = df[['Data SEI', 'Evento', 'Nome Completo', 'Cargo / Especialidade']]
+            html_table = df.to_html(index=False)
+            with open("index.html", "w") as file:
+                file.write(html_table)
 
 finally:
     # Fecha o navegador
