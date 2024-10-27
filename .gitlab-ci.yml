@@ -22,6 +22,7 @@ app:
         - mkdir .public
         - cp -r index.html .public
         - mv .public public
+        - echo "Página acessível por meio de ${CI_PAGES_URL}/${PAGES_PREFIX}"
     artifacts:
         paths:
         - public
