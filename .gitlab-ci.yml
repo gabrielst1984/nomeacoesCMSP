@@ -18,10 +18,10 @@ app:
         - pip install -r requirements.txt
     stage: deploy
     script:
-        - mkdir .public
-        - cp -r * .public
-        - mv .public public
         - python3 scrapingSEI.py
+        - mkdir .public
+        - cp -r index.html .public
+        - mv .public public
     artifacts:
         paths:
         - public
