@@ -1,4 +1,4 @@
-app:
+pages:
     image: "python:3.9"
     before_script:
         - apt-get update -qy
@@ -22,6 +22,8 @@ app:
         - mkdir .public
         - cp -r index.html .public
         - mv .public public
+        - cd public
+        - ls -l
         - echo "Página acessível por meio de ${CI_PAGES_URL}/${PAGES_PREFIX}"
     artifacts:
         paths:
