@@ -41,7 +41,7 @@ try:
 
     # Data de hoje no formato que aparece na tabela (ajuste se necessário)
     #data_hoje = datetime.now().strftime("%d/%m/%Y")
-    data_hoje = datetime(2024, 10, 22).strftime("%d/%m/%Y")
+    data_hoje = datetime(2024, 10, 25).strftime("%d/%m/%Y")
 
     # Encontra a tabela com id 'tblDocumentos'
     tabela = driver.find_element(By.ID, "tblDocumentos")
