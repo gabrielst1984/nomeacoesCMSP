@@ -7,4 +7,4 @@ app:
         - pip install -r requirements.txt
     stage: deploy
     script:
-        - scrapingSEI.py
+        - python3 scrapingSEI.py
