@@ -1,0 +1,12 @@
+image: "python:3.9"
+before_script:
+- python --version
+- python -m venv venv
+- source venv/bin/activate
+- pip install -r requirements.txt
+stages:
+- Main
+main:
+stage: Main
+script:
+- scrapingSEI.py
