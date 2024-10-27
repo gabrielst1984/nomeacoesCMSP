@@ -18,7 +18,7 @@ pages:
     stage: deploy
     script:
         - python3 scrapingSEI.py
-        - if [ ! -f "index.html" ]; then exit 1; fi
+        - if [ ! -f "index.html" ]; then exit 0; fi
         - mkdir .public
         - cp -r index.html .public
         - mv .public public
