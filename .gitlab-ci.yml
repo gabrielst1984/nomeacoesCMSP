@@ -1,6 +1,17 @@
 app:
     image: "python:3.9"
     before_script:
+        - apt-get update -qy
+        - apt-get update
+        - apt-get install -y wget unzip curl
+
+        # Install or update Google Chrome
+        - CHROME_VERSION="119.0.6045.105-1"
+        # Install Google Chrome
+        - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        - dpkg -i google-chrome-stable_current_amd64.deb || apt --fix-broken install -y
+        - google-chrome-stable --version
+
         - python --version
         - python -m venv venv
         - source venv/bin/activate
