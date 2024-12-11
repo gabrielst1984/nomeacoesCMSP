@@ -22,10 +22,10 @@ chrome_options.add_argument("--window-size=1920x1080")  # Set window size
 # Configura o caminho do driver do navegador
 url = "https://sei.prefeitura.sp.gov.br/sei/modulos/pesquisa/md_pesq_processo_exibir.php?XJe606xoyp3QxxkeXOtNa0fx5PPdOBVgkXyyCkRr268Y7xoi5fMBgzr21Gi2DD48HqC6CR8GlHl6lm-9YjSC5xE15l8KT5q5ATb3_mhXwd6GcusHK1LjH4MzBpWwclPI"
 # Strings a serem buscadas
-busca_geral = "integrante do Quadro do Pessoal do Legislativo, Anexo I da Lei nº 13.637/03, alterado pelo Anexo II da Lei nº 14.381/07 e suas alterações posteriores. (Processo nº 75/2023)."
+busca_geral = "integrante do Quadro do Pessoal do Legislativo"
 busca_sem_efeito = "TORNANDO sem efeito a Portaria"
 busca_nomeacao1 = "NOMEANDO "
-busca_nomeacao2 = ", tendo em vista a classificação obtida em concurso público, publicada no Diário Oficial da Cidade de São Paulo de"
+busca_nomeacao2 = ", tendo em vista a classificação obtida em concurso público, publicada no Diário Oficial"
 
 eventosSet = set()
 
@@ -41,7 +41,7 @@ try:
 
     # Data de hoje no formato que aparece na tabela (ajuste se necessário)
     data_hoje = datetime.now().strftime("%d/%m/%Y")
-    #data_hoje = datetime(2024, 10, 24).strftime("%d/%m/%Y")
+    #data_hoje = datetime(2024, 10, 25).strftime("%d/%m/%Y")
 
     # Encontra a tabela com id 'tblDocumentos'
     tabela = driver.find_element(By.ID, "tblDocumentos")
