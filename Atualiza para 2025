@@ -42,7 +42,7 @@ try:
 
     # Data de hoje no formato que aparece na tabela (ajuste se necessário)
     data_hoje = datetime.now().strftime("%d/%m/%Y")
-    #data_hoje = datetime(2024, 10, 25).strftime("%d/%m/%Y")
+    #data_hoje = datetime(2025, 2, 6).strftime("%d/%m/%Y")
 
     # Encontra a tabela com id 'tblDocumentos'
     tabela = driver.find_element(By.ID, "tblDocumentos")
@@ -105,7 +105,7 @@ try:
         df_sem_efeito = df[df[0].str.startswith(busca_sem_efeito)]
         if not df_sem_efeito.empty:
             df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", que nomeou ", '|', regex=False)
-            df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", para exercer o cargo de ", '|', regex=False)
+            df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(" para exercer o cargo de ", '|', regex=False)
             df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", referência QPL-", '|', regex=False)
 
             df_sem_efeito         = df_sem_efeito.iloc[:, 0].str.split('|', expand=True)
