@@ -94,7 +94,7 @@ try:
         if not df_nomeacao.empty:
             df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(busca_nomeacao1, '', regex=False)
             df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(busca_nomeacao2, '|', regex=False)
-            df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(", para exercer o cargo de ", '|', regex=False)
+            df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(" para exercer o cargo de ", '|', regex=False)
             df_nomeacao.iloc[:, 0] = df_nomeacao.iloc[:, 0].str.replace(", referência QPL-", '|', regex=False)
 
             df_nomeacao         = df_nomeacao.iloc[:, 0].str.split('|', expand=True)
