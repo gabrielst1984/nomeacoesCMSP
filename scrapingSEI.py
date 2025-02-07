@@ -20,12 +20,13 @@ chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resou
 chrome_options.add_argument("--window-size=1920x1080")  # Set window size
 
 # Configura o caminho do driver do navegador
-url = "https://sei.prefeitura.sp.gov.br/sei/modulos/pesquisa/md_pesq_processo_exibir.php?XJe606xoyp3QxxkeXOtNa0fx5PPdOBVgkXyyCkRr268Y7xoi5fMBgzr21Gi2DD48HqC6CR8GlHl6lm-9YjSC5xE15l8KT5q5ATb3_mhXwd6GcusHK1LjH4MzBpWwclPI"
+url2024 = "https://sei.prefeitura.sp.gov.br/sei/modulos/pesquisa/md_pesq_processo_exibir.php?XJe606xoyp3QxxkeXOtNa0fx5PPdOBVgkXyyCkRr268Y7xoi5fMBgzr21Gi2DD48HqC6CR8GlHl6lm-9YjSC5xE15l8KT5q5ATb3_mhXwd6GcusHK1LjH4MzBpWwclPI"
+url     = "https://sei.prefeitura.sp.gov.br/sei/modulos/pesquisa/md_pesq_processo_exibir.php?gA0lcUaPjM1W10plWgdOL3mFWFTyKaJqyBfdpXOfcBWdEUufYzCzKHVXX_cll121ehK-RiwSvsx823ub2xaM7eqB6xuLXRas9s9-t1jLr1aiifkfsBZ64SkMFbUrM82r"
 # Strings a serem buscadas
 busca_geral = "integrante do Quadro do Pessoal do Legislativo"
 busca_sem_efeito = "TORNANDO sem efeito a Portaria"
 busca_nomeacao1 = "NOMEANDO "
-busca_nomeacao2 = ", tendo em vista a classificação obtida em concurso público, publicada no Diário Oficial"
+busca_nomeacao2 = ", tendo em vista a classificação obtida"
 
 eventosSet = set()
 
