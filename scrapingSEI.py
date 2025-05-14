@@ -105,7 +105,7 @@ try:
         df_sem_efeito = df[df[0].str.startswith(busca_sem_efeito)]
         if not df_sem_efeito.empty:
             df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", que nomeou ", '|', regex=False)
-            df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(" para exercer o cargo de ", '|', regex=False)
+            df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", para exercer o cargo de ", '|', regex=False)
             df_sem_efeito.iloc[:, 0] = df_sem_efeito.iloc[:, 0].str.replace(", referência QPL-", '|', regex=False)
 
             df_sem_efeito         = df_sem_efeito.iloc[:, 0].str.split('|', expand=True)
