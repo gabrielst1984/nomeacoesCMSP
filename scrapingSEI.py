@@ -24,7 +24,7 @@ url2024 = "https://sei.prefeitura.sp.gov.br/sei/modulos/pesquisa/md_pesq_process
 url     = "https://sei.prefeitura.sp.gov.br/sei/modulos/pesquisa/md_pesq_processo_exibir.php?gA0lcUaPjM1W10plWgdOL3mFWFTyKaJqyBfdpXOfcBWdEUufYzCzKHVXX_cll121ehK-RiwSvsx823ub2xaM7eqB6xuLXRas9s9-t1jLr1aiifkfsBZ64SkMFbUrM82r"
 # Strings a serem buscadas
 busca_geral = "integrante do Quadro do Pessoal do Legislativo"
-busca_sem_efeito = "TORNANDO sem efeito a Portaria"
+busca_sem_efeito = "TORNANDO SEM EFEITO a Portaria"
 busca_nomeacao1 = "NOMEANDO "
 busca_nomeacao2 = ", tendo em vista a classificação obtida"
 
